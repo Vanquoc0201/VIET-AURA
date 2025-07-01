@@ -1,0 +1,45 @@
+# -- API & Web Server --
+# Dùng để xây dựng một máy chủ web (web server) nhẹ nhàng.
+# Trong dự án này, nó tạo ra các "cánh cửa" API (ví dụ: /predict)
+# để các ứng dụng khác có thể gửi ảnh tới và nhận kết quả dự đoán.
+flask
+
+# -- Xử Lý Hàng Đợi (Message Queue) --
+# Là một client để giao tiếp với RabbitMQ (một hệ thống message broker).
+# Dùng trong các kiến trúc phức tạp hơn, giúp nhận các yêu cầu xử lý một cách
+# tuần tự và bền bỉ, tránh làm quá tải cho module AI.
+# Ví dụ: Một web server khác nhận ảnh từ người dùng, sau đó đẩy yêu cầu
+# vào hàng đợi, và module AI này sẽ "lấy" yêu cầu từ hàng đợi ra để xử lý.
+pika
+
+# -- Trái Tim Của AI (Machine Learning Framework) --
+# Là thư viện học máy/học sâu toàn diện của Google.
+# Nó được sử dụng để:
+# 1. Xây dựng kiến trúc của mô hình mạng nơ-ron (Neural Network).
+# 2. Huấn luyện (train) mô hình với dữ liệu hình ảnh đã thu thập.
+# 3. Lưu lại mô hình đã huấn luyện.
+# 4. Tải mô hình lên và sử dụng nó để đưa ra dự đoán (inference).
+tensorflow
+
+# -- Xử Lý & Chuẩn Bị Hình Ảnh --
+# Là một nhánh (fork) của thư viện PIL, chuyên dùng để xử lý ảnh trong Python.
+# Công dụng chính trong dự án này:
+# 1. Mở và đọc file ảnh từ các request.
+# 2. Thay đổi kích thước (resize) ảnh về đúng kích thước mà mô hình yêu cầu.
+# 3. Chuyển đổi ảnh thành một mảng số (array) để TensorFlow có thể hiểu được.
+pillow
+
+# -- Tính Toán Khoa Học & Xử Lý Ma Trận --
+# Là thư viện nền tảng cho tính toán khoa học trong Python.
+# Trong các dự án AI, hình ảnh được biểu diễn dưới dạng các ma trận (mảng)
+# chứa các con số (giá trị pixel). Numpy cung cấp các công cụ cực kỳ hiệu quả
+# để thực hiện các phép toán trên những ma trận lớn này.
+# Nó là thư viện phụ thuộc cốt lõi của TensorFlow và Pillow.
+numpy
+
+# -- Thu Thập Dữ Liệu (Image Crawling/Scraping) --
+# Là một công cụ mạnh mẽ để "cào" (tải tự động) hình ảnh từ các công cụ
+# tìm kiếm như Google, Bing, Baidu.
+# Dùng trong giai đoạn thu thập dữ liệu để xây dựng bộ dataset huấn luyện cho model.
+# Nó là một giải pháp thay thế cho 'simple_image_download'.
+icrawler

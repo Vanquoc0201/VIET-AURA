@@ -1,0 +1,10 @@
+# Bỏ qua thư mục môi trường ảo
+venv/
+
+# Bỏ qua các file tạm Python
+__pycache__/
+*.py[cod]
+
+# Bỏ qua các file hệ thống
+.DS_Store
+Thumbs.db
